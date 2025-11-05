@@ -23,41 +23,41 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
 
-    - name: Run tests with coverage
-      run: |
+      - name: Run tests with coverage
+        run: |
         npm run test -- --coverage || echo "⚠️ Tests or coverage generation failed, continuing anyway..."
 
-    - name: Ensure coverage summary exists (fallback)
-      run: |
+      - name: Ensure coverage summary exists (fallback)
+        run: |
         # Detect possible coverage folders
-        if [ -d "coverage" ]; then
+         if [ -d "coverage" ]; then
           echo "✅ Found coverage folder."
-        elif [ -d ".vitest/coverage" ]; then
+         elif [ -d ".vitest/coverage" ]; then
           echo "📂 Found .vitest/coverage, moving it to ./coverage"
           mv .vitest/coverage coverage
-        else
+         else
           echo "⚠️ No coverage folder found. Creating a dummy one."
           mkdir -p coverage
-        fi
+         fi
 
         # Ensure coverage-summary.json exists
-        if [ ! -f "coverage/coverage-summary.json" ]; then
+         if [ ! -f "coverage/coverage-summary.json" ]; then
           echo "⚠️ coverage-summary.json not found, creating dummy file."
           echo '{"total": {"lines": {"pct": 0}, "statements": {"pct": 0}, "functions": {"pct": 0}, "branches": {"pct": 0}}}' > coverage/coverage-summary.json
-        fi
+         fi
 
         # Ensure coverage-final.json exists
-        if [ ! -f "coverage/coverage-final.json" ]; then
+         if [ ! -f "coverage/coverage-final.json" ]; then
           echo "⚠️ coverage-final.json not found, creating dummy file."
           echo '{}' > coverage/coverage-final.json
-        fi
+         fi
 
-    - name: Vitest Coverage Report Action
-      uses: davelosert/vitest-coverage-report-action@v2
-      with:
+      - name: Vitest Coverage Report Action
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
         json-summary-path: coverage/coverage-summary.json
         json-final-path: coverage/coverage-final.json
         file-coverage-mode: changes
