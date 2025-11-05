@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-        npm run test -- --coverage || echo "⚠️ Tests or coverage generation failed, continuing anyway..."
+         npm run test -- --coverage || echo "⚠️ Tests or coverage generation failed, continuing anyway..."
 
       - name: Ensure coverage summary exists (fallback)
         run: |
