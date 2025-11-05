@@ -46,7 +46,7 @@ jobs:
         # Ensure coverage-summary.json exists
          if [ ! -f "coverage/coverage-summary.json" ]; then
           echo "⚠️ coverage-summary.json not found, creating dummy file."
-          echo '{"total": {"lines": {"pct": 0}, "statements": {"pct": 0}, "functions": {"pct": 0}, "branches": {"pct": 0}}}' > coverage/coverage-summary.json
+          echo "{"total": {"lines": {"pct": 0}, "statements": {"pct": 0}, "functions": {"pct": 0}, "branches": {"pct": 0}}}" > coverage/coverage-summary.json
          fi
 
         # Ensure coverage-final.json exists
