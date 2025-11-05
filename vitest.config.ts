@@ -7,6 +7,7 @@ export default defineConfig({
     environment: "node",
     globals: true,
     coverage: {
+      reportsDirectory: "./coverage",
       provider: "v8",
       reporter: ["text", "json-summary", "json"],
       include: ["src/**/*.{ts,tsx}"],
