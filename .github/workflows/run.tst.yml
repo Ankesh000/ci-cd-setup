@@ -12,25 +12,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
-
   run-linter-and-tests:
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm i
 
+      - name: Lint code
+        run: npm run lint
 
-    - name: Install dependencies
-      run: npm i
-
-
-    - name: Lint code
-      run: npm run lint
-
-
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
